@@ -9,7 +9,9 @@ LABEL description="This container contains miniforge installed on nvidia/cuda:12
 # Set environment variables
 ENV PATH=/opt/miniforge/bin:$PATH
 
-RUN wget https://github.com/conda-forge/miniforge/releases/download/24.11.2-1/Miniforge3-24.11.2-1-Linux-x86_64.sh  \
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends build-essential wget git && \
+    && wget https://github.com/conda-forge/miniforge/releases/download/24.11.2-1/Miniforge3-24.11.2-1-Linux-x86_64.sh  \
     && bash Miniforge3-24.11.2-1-Linux-x86_64.sh  -b -p /opt/miniforge \
     && rm -f Miniforge3-24.11.2-1-Linux-x86_64.sh  
 
